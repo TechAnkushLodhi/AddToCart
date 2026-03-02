@@ -1,0 +1,36 @@
+<?php
+$product = $block->getProduct();
+
+if (!$product) {
+    return;
+}
+?>
+
+<div class="addtocart-popup-content">
+
+    <h2>✅ Product Added To Cart</h2>
+
+    <div style="display:flex; gap:15px; align-items:center;">
+        <img src="<?= $block->getProductImageUrl($product) ?>"
+             alt="<?= $block->escapeHtmlAttr($product->getName()) ?>"
+             style="max-width:100px;" />
+
+        <strong><?= $block->escapeHtml($product->getName()) ?></strong>
+    </div>
+
+    <hr/>
+
+    <?= $block->getChildHtml('catalog.product.related'); ?>
+    <?= $block->getChildHtml('product.info.upsell'); ?>
+
+    <div style="margin-top: 15px;">
+        <a href="<?= $block->getUrl('checkout/cart') ?>" class="action primary">
+            View Cart
+        </a>
+
+        <button type="button" class="action secondary"
+            onclick="require(['jquery'], function ($) { $('.modal-popup').modal('closeModal'); });">
+            Continue Shopping
+        </button>
+    </div>
+</div>

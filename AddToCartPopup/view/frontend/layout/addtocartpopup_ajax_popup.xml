@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+
+        <!-- Popup Wrapper -->
+        <block class="Ankush\AddToCartPopup\Block\Popup"
+               name="addtocart.popup"
+               template="Ankush_AddToCartPopup::popup.phtml">
+
+            <!-- RELATED PRODUCTS (Default Copy) -->
+            <block class="Magento\Catalog\Block\Product\ProductList\Related"
+                   name="catalog.product.related"
+                   template="Ankush_AddToCartPopup::product/list/items.phtml">
+                <arguments>
+                    <argument name="type" xsi:type="string">related</argument>
+                    <argument name="view_model" xsi:type="object">
+                        Magento\Catalog\ViewModel\Product\Listing\PreparePostData
+                    </argument>
+                </arguments>
+
+                <block class="Magento\Catalog\Block\Product\ProductList\Item\Container"
+                       name="related.product.addto" as="addto">
+                    <block class="Magento\Catalog\Block\Product\ProductList\Item\AddTo\Compare"
+                           name="related.product.addto.compare"
+                           as="compare"
+                           template="Magento_Catalog::product/list/addto/compare.phtml"/>
+                </block>
+            </block>
+
+            <!-- UPSELL PRODUCTS (Default Copy) -->
+            <block class="Magento\Catalog\Block\Product\ProductList\Upsell"
+                   name="product.info.upsell"
+                   template="Ankush_AddToCartPopup::product/list/items.phtml">
+                <arguments>
+                    <argument name="type" xsi:type="string">upsell</argument>
+                    <argument name="view_model" xsi:type="object">
+                        Magento\Catalog\ViewModel\Product\Listing\PreparePostData
+                    </argument>
+                </arguments>
+
+                <block class="Magento\Catalog\Block\Product\ProductList\Item\Container"
+                       name="upsell.product.addto" as="addto">
+                    <block class="Magento\Catalog\Block\Product\ProductList\Item\AddTo\Compare"
+                           name="upsell.product.addto.compare"
+                           as="compare"
+                           template="Magento_Catalog::product/list/addto/compare.phtml"/>
+                </block>
+            </block>
+
+        </block>
+
+    </body>
+</page>
